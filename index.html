@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign-up Form</title>
+  <link rel="icon" type="image/x-icon" href="image1.png">
+  <style>
+    body {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, Helvetica, sans-serif;
+      background-color: #77dedf;
+    }
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 50px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      background-color: #b6cdabf3;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #1c242e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 style="text-align: center;">SIGN-UP FORM</h2>
+    <form id="signup-form">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" placeholder="EMAIL" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="PASSWORD" required>
+      </div>
+      <button type="submit">SIGN UP</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('signup-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      // Email validation using a simple regular expression
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Invalid email address. Please enter a valid email.');
+        return;
+      }
+
+      // Password validation
+      const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+      if (!passwordRegex.test(password)) {
+        alert('Invalid password. Password must meet the following criteria:\n\n' +
+          '- At least 8 characters\n' +
+          '- At least one uppercase letter\n' +
+          '- At least one special character (!@#$%^&*)\n' +
+          '- At least one number');
+        return;
+      }
+
+      alert('Sign-up successful!');
+      // You can submit the form to your server here.
+    });
+  </script>
+</body>
+</html>
